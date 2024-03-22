@@ -1,14 +1,11 @@
-1. Master:
+Step 1. Master:
 
 make ansible user:                                 useradd ansible
 change password for ansible user:                  passwd ansible
 privilege to normal user as ansible user:          ansible ALL=(ALL) NOPASSWD:ALL
 switch to ansible user:                            su ansible
 
-
-
-
-2. Client:
+Step 2. Client:
 
 make ansible user:                                useradd ansible
 change password for ansible user:                 passwd ansible
@@ -16,3 +13,10 @@ switch to ansible user:                           su ansible
 password authentication:                          nano /etc/ssh/sshd_config
     PasswordAuthentication yes(uncomment it)
 restart sshd:                                     service sshd restart
+
+Step 3 . Master
+switch to ansible user:                            su ansible
+Generate key:                                      ssh-keygen
+To see the key                                     ls -al
+To copy the key to slave/client:                   ssh-copy-id ansible@private-ip of slave
+exit & now become a root user, after this install ansible: yum install ansible -y
