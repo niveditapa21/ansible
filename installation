@@ -1,22 +1,23 @@
 Below are the steps to install Ansible and establish master-client connection.
-
+*************************************************************************************
 Step1. Pre-requisites:
 On Master: Python , Ansible
 On Client: Python only
-
+_________________________________________________________________________________________
 Step2. Install Python on Master & client both:
 yum install python
 yum install python-pip
+_______________________________________________________________________________________
 
-Step 2. Master:
+Step 3. Master:
 
 make ansible user:                                 useradd ansible
 change password for ansible user:                  passwd ansible
 privilege to normal user as ansible user:          ansible ALL=(ALL) NOPASSWD:ALL
 switch to ansible user:                            su ansible
+_______________________________________________________________________________________
 
-
-Step 3. Client:
+Step 4. Client:
 
 make ansible user:                                useradd ansible
 change password for ansible user:                 passwd ansible
@@ -25,9 +26,9 @@ password authentication:                          nano /etc/ssh/sshd_config
     PasswordAuthentication yes(uncomment it)
 restart sshd:                                     service sshd restart
 
+___________________________________________________________________________________________
 
-
-Step 4. Master
+Step 5. Master
 switch to ansible user:                            su ansible
 Generate key:                                      ssh-keygen
 To see the key                                     ls -al
