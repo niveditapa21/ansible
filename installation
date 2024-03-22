@@ -1,11 +1,22 @@
-Step 1. Master:
+Below are the steps to install Ansible and establish master-client connection.
+
+Step1. Pre-requisites:
+On Master: Python , Ansible
+On Client: Python only
+
+Step2. Install Python on Master & client both:
+yum install python
+yum install python-pip
+
+Step 2. Master:
 
 make ansible user:                                 useradd ansible
 change password for ansible user:                  passwd ansible
 privilege to normal user as ansible user:          ansible ALL=(ALL) NOPASSWD:ALL
 switch to ansible user:                            su ansible
 
-Step 2. Client:
+
+Step 3. Client:
 
 make ansible user:                                useradd ansible
 change password for ansible user:                 passwd ansible
@@ -14,9 +25,21 @@ password authentication:                          nano /etc/ssh/sshd_config
     PasswordAuthentication yes(uncomment it)
 restart sshd:                                     service sshd restart
 
-Step 3 . Master
+
+
+Step 4. Master
 switch to ansible user:                            su ansible
 Generate key:                                      ssh-keygen
 To see the key                                     ls -al
 To copy the key to slave/client:                   ssh-copy-id ansible@private-ip of slave
-exit & now become a root user, after this install ansible: yum install ansible -y
+exit & now become a root user, after this install ansible:   sudo yum remove ansible
+                                                             sudo yum update
+                                                             sudo yum install software-properties-common
+                                                             sudo yum-add-repository --yes --update ppa:ansible/ansible
+                                                             sudo yum install ansible
+[Note: If config = None, then create a file called "ansible.cfg" in /etc/ansible/ location with :
+                                                                                                [defaults]
+                                                                                                inventory = hosts
+If you create an ansible.cfg file in one of these locations, Ansible will use it instead of the default configuration.]
+
+
