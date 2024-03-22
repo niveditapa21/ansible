@@ -1,18 +1,18 @@
 1. Master:
 
-make ansible user:  useradd ansible
-change password for ansible user:  passwd ansible
-priviledge to normal user as ansible user: ansible ALL=(ALL) NOPASSWD:ALL
-switch to ansible user:  su ansible
+make ansible user:                                 useradd ansible
+change password for ansible user:                  passwd ansible
+privilege to normal user as ansible user:          ansible ALL=(ALL) NOPASSWD:ALL
+switch to ansible user:                            su ansible
 
 
 
 
 2. Client:
 
-make ansible user:  useradd ansible
-change password for ansible user:  passwd ansible
-switch to ansible user:  su ansible
-password authentication: nano /etc/ssh/sshd_config
+make ansible user:                                useradd ansible
+change password for ansible user:                 passwd ansible
+switch to ansible user:                           su ansible
+password authentication:                          nano /etc/ssh/sshd_config
     PasswordAuthentication yes(uncomment it)
-restart sshd: service sshd restart
+restart sshd:                                     service sshd restart
