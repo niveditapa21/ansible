@@ -1,46 +1,69 @@
-Below are the steps to install Ansible and establish master-client connection.
-*************************************************************************************
+Below are the steps to install Ansible & configure the Master-Slave connection using passwordless authentication:
+****************************************************************************************************************
 Step1. Pre-requisites:
+Two ec2 instances(Amazon Linux)
 On Master: Python , Ansible
 On Client: Python only
 _________________________________________________________________________________________
 Step2. Install Python on Master & client both:
-yum install python
-yum install python-pip
+**********************************************
+
+yum install python -y
+yum install python-pip -y
+
+Check Python version:                             python --version
 _______________________________________________________________________________________
 
 Step 3. Master:
+***************
 
 make ansible user:                                 useradd ansible
 change password for ansible user:                  passwd ansible
-privilege to normal user as ansible user:          ansible ALL=(ALL) NOPASSWD:ALL
+privilege to normal user as ansible user:          visudo  ----->  ansible ALL=(ALL) NOPASSWD:ALL  [Note: This will make ansible to run any command on client without passsword]
+
 switch to ansible user:                            su ansible
 _______________________________________________________________________________________
 
 Step 4. Client:
+****************
 
-make ansible user:                                useradd ansible
-change password for ansible user:                 passwd ansible
-switch to ansible user:                           su ansible
-password authentication:                          nano /etc/ssh/sshd_config
+make ansible user:                                        useradd ansible
+change password for ansible user:                         passwd ansible
+switch to ansible user:                                   su ansible
+password less authentication in slave/client server:      nano /etc/ssh/sshd_config
     PasswordAuthentication yes(uncomment it)
 restart sshd:                                     service sshd restart
 
 ___________________________________________________________________________________________
 
-Step 5. Master
+Step 5. Master :
+*****************
+
 switch to ansible user:                            su ansible
 Generate key:                                      ssh-keygen
 To see the key                                     ls -al
 To copy the key to slave/client:                   ssh-copy-id ansible@private-ip of slave
+Try to ssh into client/slave server with password less authentication: ssh ansible@private-ip of slave
 exit & now become a root user, after this install ansible:   sudo yum remove ansible
-                                                             sudo yum update
-                                                             sudo yum install software-properties-common
-                                                             sudo yum-add-repository --yes --update ppa:ansible/ansible
-                                                             sudo yum install ansible
+                                                             sudo yum update -y
+                                                             sudo yum install software-properties-common -y 
+                                                             sudo yum-add-repository --yes --update ppa:ansible/ansible -y 
+                                                             sudo yum install ansible -y 
 [Note: If config = None, then create a file called "ansible.cfg" in /etc/ansible/ location with :
                                                                                                 [defaults]
                                                                                                 inventory = hosts
 If you create an ansible.cfg file in one of these locations, Ansible will use it instead of the default configuration.]
+
+add hosts in inventory/hosts file:       nano /etc/ansible/hosts   ----->  [name]
+                                                                           private-ip address of slave/client
+Now , switch as ansible user:            su ansible
+To ping client/slave from master:        ansible all -m ping
+To check whether file goes to client/slave or not:  create a file (ex:file1)
+                                                    scp file1 ansible@172.31.21.239:/tmp/  [note: here, /tmp/ directory of slave is used ,where file1 will be copied]
+
+
+Completed!!!!!!!
+
+
 
 
