@@ -33,6 +33,7 @@ switch to ansible user:                                   su ansible
 password less authentication in slave/client server:      nano /etc/ssh/sshd_config
     PasswordAuthentication yes(uncomment it)
 restart sshd:                                     service sshd restart
+exit from ansible user to root user,then give privilege to normal user as ansible user:          visudo  ----->  ansible ALL=(ALL) NOPASSWD:ALL
 
 ___________________________________________________________________________________________
 
