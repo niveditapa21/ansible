@@ -1,0 +1,6 @@
+Syntax check: --->  ansible-playbook  <playbook. yml>   --syntax-check
+
+To check all clients/slaves: --->  ansible  all   --list
+
+To check connection of clients/slaves: --->   ansible all -m ping
+
