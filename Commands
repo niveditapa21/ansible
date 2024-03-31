@@ -4,3 +4,5 @@ To check all clients/slaves: --->  ansible  all   --list
 
 To check connection of clients/slaves: --->   ansible all -m ping
 
+To check modules : --> ansible-doc  -l | wc  -l    [note: wc ==>  word count]
+
