@@ -1,0 +1,32 @@
+Step1:
+*******************
+Create three instances: Master
+                        Node1
+                        node2
+Step2:
+*****************
+Rename to desired hostname: Master ----->  sudo hostnamectl set-hostname master
+                            Node1 ------>   sudo hostnamectl set-hostname node1
+                            Node2 ------>   sudo hostnamectl set-hostname node2
+
+Step3: (this step has to perform on all three nodes)
+***************************************************
+Create ansible user on Master , Node1, Node2:
+useradd ansible
+passwd ansible
+
+The above ansible user should sudoer/should be in wheel group:( to do on all three nodes)
+sudo usermod -aG wheel ansible
+
+check it:
+id ansible
+
+Go to sudoer file,by: --> visudo OR nano /etc/sudoers --->  & replace "wheel" with "ansible" ---> ansible ALL=(ALL)  ALL    ---> &,  check it, by:  --->  cat /etc/sudoers | grep -i ansible
+
+Step4:
+********
+To enable password authentication so that it must ask password while exchanging the ssh-keys in the ssh configuration file:
+
+nano /etc/ssh/sshd_config  ---> Uncomment   ==> PasswordAuthentication yes
+
+
