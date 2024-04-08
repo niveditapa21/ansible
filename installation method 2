@@ -29,4 +29,15 @@ To enable password authentication so that it must ask password while exchanging 
 
 nano /etc/ssh/sshd_config  ---> Uncomment   ==> PasswordAuthentication yes
 
+Step5:
+********
+Then to restart the sshd service --->  service sshd restart
+
+Step 6:
+********
+Install pip and python on three of the machines:
+pip: ---> yum install pip -y  OR   yum install pip3 -y
+
+
+
 
