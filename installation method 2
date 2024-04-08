@@ -23,7 +23,7 @@ id ansible
 
 Go to sudoer file,by: --> visudo OR nano /etc/sudoers --->  & replace "wheel" with "ansible" ---> ansible ALL=(ALL)  ALL    ---> &,  check it, by:  --->  cat /etc/sudoers | grep -i ansible
 
-Step4:
+Step4:(on all three machines)
 ********
 To enable password authentication so that it must ask password while exchanging the ssh-keys in the ssh configuration file:
 
@@ -33,10 +33,53 @@ Step5:
 ********
 Then to restart the sshd service --->  service sshd restart
 
-Step 6:
+Step 6:(on all three machines)
 ********
 Install pip and python on three of the machines:
 pip: ---> yum install pip -y  OR   yum install pip3 -y
+
+Python: --> yum install python3 -y 
+
+Step7:(only on master)
+*********************
+Switch to ansible user  --> sudo su - ansible
+
+install ansible -->  python3 -m pip install --user ansible
+
+check it --> ansible --version
+
+ssh key generation  -->  ssh-keygen
+                         ls -lrta  (to find the ssh key in the list)
+                         cd .ssh/
+                         cd
+
+
+copy the ssh-key to both the node  --> ssh-copy-id ansible@private-ip-address (node1)
+
+                                       ssh-copy-id ansible@private-ip-address (node2)
+
+Now, try logging into both the machines from master: --> ssh ansible@private-ip-address (node1)
+                                                         ssh ansible@private-ip-address (node2)
+
+
+Now, there is a must to have ansible.cfg (its a configuration file for ansible)  and inventory/hosts files on master(being ansible user):
+
+vim ansible.cfg
+[defaults]
+inventory = hosts (Note: hosts is the file name in which nodes/clients ip will  be mentioned,so file name can be anything)
+
+nano hosts
+[group-name]
+webserver1 ansible_hosts=private/public-ip of node1
+webserver2 ansible_hosts=private/public-ip of node2
+
+
+Talk to client nodes from master machine:
+ansible all -m ping 
+
+
+
+
 
 
 
