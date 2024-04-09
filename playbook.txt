@@ -1,6 +1,6 @@
 Playbook1:
 ************
-To install packages at once:
+To install packages at once: [note: "yum" is the module]
 ____________________________
 ---
 - name: installation of multiplepackages
@@ -12,6 +12,7 @@ ____________________________
        - httpd
        - unzip
        - wget
+     state: latest
 
 
 Playbook2:
