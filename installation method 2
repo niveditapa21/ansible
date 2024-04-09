@@ -21,7 +21,8 @@ sudo usermod -aG wheel ansible
 check it:
 id ansible
 
-Go to sudoer file,by: --> visudo OR nano /etc/sudoers --->  & replace "wheel" with "ansible" ---> ansible ALL=(ALL)  ALL    ---> &,  check it, by:  --->  cat /etc/sudoers | grep -i ansible
+Go to sudoer file,by: --> visudo OR nano /etc/sudoers --->   replace  -->  "wheel" with "ansible" ---> ansible ALL=(ALL)  ALL  ,  check it, by:  --->  cat /etc/sudoers | grep -i ansible
+                                                                      -->  "wheel" with "ansible" -->  ansible ALL=(ALL) NOPASSWD:ALL  [Note: This will make ansible to run any command on client without passsword]
 
 Step4:(on all three machines)
 ********
