@@ -3,41 +3,41 @@ Playbook1:
 To install packages at once: [note: "yum" is the module]
 ____________________________
 ---
-- name: installation of multiplepackages
-  hosts: all
-  tasks:
-   - name: install two packages
-     yum:
-      name:
-       - httpd
-       - unzip
-       - wget
-     state: latest
+  - name: installation of multiplepackages
+    hosts: all
+    tasks:
+     - name: install two packages
+       yum:
+       name:
+        - httpd
+        - unzip
+        - wget
+       state: latest
 
 
 Playbook2:
 ***********
 Two tasks/plays at once:
 ---
-- name: install httpd
-  hosts: all
-  tasks:
-   - name: install httpd
-     yum:
-      name: httpd
-      state: latest
-   - name: restart web service
-     service:
-      name: httpd
-      state: started
+  - name: install httpd
+    hosts: all
+    tasks:
+     - name: install httpd
+       yum:
+        name: httpd
+        state: latest
+     - name: restart web service
+       service:
+        name: httpd
+        state: started
 
 
 Playbook3:[ To create users and group on all nodes/clients]
 ***********
 ---
-- name: to create users and group
-  hosts: all
-  tasks:
+  - name: to create users and group
+    hosts: all
+    tasks:
    - name: create group1
      group:
       name: group1
