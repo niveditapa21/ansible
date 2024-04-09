@@ -29,4 +29,21 @@ Two tasks/plays at once:
    - name: restart web service
      service:
       name: httpd
-      state: restarted
+      state: started
+
+
+Playbook3:[ To create users and group on all nodes/clients]
+***********
+---
+- name: to create users and group
+  hosts: all
+  tasks:
+   - name: create group1
+     group:
+      name: group1
+      state: present
+   - name: create users
+     user: 
+      name: admin
+      comment: he is the admin
+      group: group1
