@@ -3,12 +3,15 @@ Playbook1:
 To install packages at once:
 ____________________________
 ---
-- name: Install a list of packages
-  yum:
-    name:
-      - httpd
-      - unzip
-    state: present
+- name: installation of multiplepackages
+  hosts: all
+  tasks:
+   - name: install two packages
+     yum:
+      name:
+       - httpd
+       - unzip
+       - wget
 
 
 Playbook2:
