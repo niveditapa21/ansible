@@ -1,1 +1,28 @@
+Playbook1:
+************
+To install packages at once:
+____________________________
+---
+- name: Install a list of packages
+  yum:
+    name:
+      - httpd
+      - unzip
+    state: present
 
+
+Playbook2:
+***********
+Two tasks/plays at once:
+---
+- name: install httpd
+  hosts: all
+  tasks:
+   - name: install httpd
+     yum:
+      name: httpd
+      state: latest
+   - name: restart web service
+     service:
+      name: httpd
+      state: restarted
