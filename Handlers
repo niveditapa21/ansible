@@ -3,4 +3,26 @@ They are like regular task ,but run only if task contain a "notify" directive an
 
 Playbook:
 ********
+---
+  - name: handlers
+    hosts: web
+    become: yes
+    become_user: root
+    tasks:
+     - name: install httpd
+       yum:
+        name: httpd
+        state: latest
+       notify:
+        - restart httpd
+     - name: install vsftpd
+       yum:
+        name: vsftpd
+        state: latest
+    handlers:
+     - name: restart httpd
+       service:
+        name: httpd
 
+
+Note: what is mentioned in "notify" should be same in the "name" section of handlers.
