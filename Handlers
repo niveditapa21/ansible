@@ -1,0 +1,6 @@
+They are like regular task ,but run only if task contain a "notify" directive and also indicate that it changed something.
+
+
+Playbook:
+********
+
