@@ -1,0 +1,22 @@
+nano server
+[prod]
+private-ip address of node1
+
+[web]
+private-ip address of node2
+
+
+Playbook:
+*********
+---
+  - name: install httpd
+    hosts: prod
+    tasks:
+     - name: install httpd
+       yum:
+        name: httpd
+        state: latest
+     - name: restart web service
+       service:
+        name: httpd
+        state: started
