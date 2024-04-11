@@ -68,6 +68,13 @@ Now, there is a must to have ansible.cfg (its a configuration file for ansible) 
 vim ansible.cfg
 [defaults]
 inventory = hosts (Note: hosts is the file name in which nodes/clients ip will  be mentioned,so file name can be anything)
+remote_user = ansible
+[privilege_escalation]
+become = True
+become_method = sudo
+become_user = root
+become_ask_pass = False
+
 
 nano hosts
 [group-name]
