@@ -1,0 +1,24 @@
+Step1: create file called hello_world.j2 [vim hello_world.j2]
+*****************************************************
+{{ variable_to_be_replaced }}
+This line won't be changed
+Variable given as inline - {{ inline_variable }} - :)
+save this hello_world.j2 file
+
+Step2: create file called file.yml [vim file.yml]
+**********************************************
+
+- hosts: all
+  vars:
+    variable_to_be_replaced: 'Hello world'
+    inline_variable: 'hello again'
+  tasks:
+    - name: Ansible Template Example
+      template:
+        src: hello_world.j2
+        dest: /var/tmp/hello_world.txt
+
+
+Step3: Verify the file from ansible client machines
+****************************************************
+ansible all -m command -a "cat /var/tmp/hello_world.txt"
