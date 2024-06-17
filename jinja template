@@ -1,8 +1,10 @@
 Step1: create file called hello_world.j2 [vim hello_world.j2]
 *****************************************************
 {{ variable_to_be_replaced }}
-This line won't be changed
-Variable given as inline - {{ inline_variable }} - :)
+
+ {{ inline_variable }}        ---->Note: Variable given as inline 
+
+
 save this hello_world.j2 file
 
 Step2: create file called file.yml [vim file.yml]
