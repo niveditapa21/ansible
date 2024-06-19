@@ -14,3 +14,15 @@ positional arguments:
     encrypt             Encrypt YAML file
     encrypt_string      Encrypt a string
     rekey               Re-key a vault encrypted file
+
+
+Encrypt existing normal playbook:
+********************************
+ansible-vault encrypt "yaml-file-name"
+
+Decrypt the playbook:
+********************
+ansible-vault decrypt "yaml-file-name"
+
+
+
