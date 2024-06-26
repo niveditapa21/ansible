@@ -1,0 +1,17 @@
+If config file returns None . . .
+****************************************
+ansible 2.9.12
+  config file = None
+  . . .
+ 
+
+Create the /etc/ansible directory if it doesn't exist.
+****************************************************
+             mkdir /etc/ansible
+ 
+
+And then create the ansible.cfg file.
+***************************************
+touch /etc/ansible/ansible.cfg
+
+
