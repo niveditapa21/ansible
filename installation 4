@@ -1,0 +1,41 @@
+On   Ubuntu
+*****************
+
+1)  sudo apt update
+
+2) run the following command to include the official project’s PPA (personal package archive) in your system’s list of sources:-->
+______________________________________________________________________________________________________________________________
+  
+sudo apt-add-repository ppa:ansible/ansible
+
+
+3)refresh your system’s package index so that it is aware of the packages available in the newly included PPA:-->
+_____________________________________________________________________________________________________________
+sudo apt update
+
+
+
+4) Following this update, you can install the Ansible software with:-->
+__________________________________________________________________
+sudo apt install ansible
+
+
+5)Setting Up the Inventory File:-->
+_________________________________
+sudo nano /etc/ansible/hosts
+
+
+[servers]
+server1 ansible_host=203.0.113.111
+server2 ansible_host=203.0.113.112
+server3 ansible_host=203.0.113.113
+ansible --vers
+
+6) to check your inventory, you can run:-->
+_______________________________________
+ansible-inventory --list -y
+
+
+7)  Testing Connection:-->
+__________________________
+ansible all -m ping -u root
